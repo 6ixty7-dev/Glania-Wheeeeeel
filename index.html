@@ -6,6 +6,11 @@
     <title>Round Y</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             display: flex;
             flex-direction: column;
@@ -15,6 +20,7 @@
             font-family: Arial, sans-serif;
             background-color: #0A1B2F;
             color: #FFFFFF;
+            overflow-x: hidden;
         }
         .header {
             text-align: center;
@@ -23,15 +29,27 @@
             justify-content: space-between;
             width: 100%;
             max-width: 600px;
+            padding: 0 10px;
         }
         .header img {
             max-width: 100px;
             height: auto;
+            object-fit: contain;
+        }
+        @media (max-width: 768px) {
+            .header img {
+                max-width: 80px;
+            }
+            .header {
+                padding: 0 5px;
+            }
         }
         canvas {
-            border: 2px solid #FFFFFF;
-            background-color: #FFFFFF;
+            border: 2px solid #0A1B2F; /* Match background to remove white border */
+            background-color: #0A1B2F; /* Remove white background */
             border-radius: 50%;
+            max-width: 80vw;
+            max-height: 80vh;
         }
         button {
             margin: 20px 0;
@@ -42,15 +60,25 @@
             color: #FFFFFF;
             border: none;
             border-radius: 5px;
+            width: 200px;
+            max-width: 80vw;
         }
         button:hover {
             background-color: #1E40AF;
+        }
+        @media (max-width: 768px) {
+            button {
+                font-size: 16px;
+                padding: 8px 16px;
+                width: 150px;
+            }
         }
         #result {
             margin-top: 20px;
             font-size: 24px;
             font-weight: bold;
             text-align: center;
+            min-height: 30px;
         }
         #modal {
             display: none;
@@ -71,6 +99,9 @@
             text-align: center;
             transform: scale(0);
             transition: transform 0.3s ease-in-out;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow-y: auto;
         }
         #modalContent.show {
             transform: scale(1);
@@ -79,6 +110,16 @@
             max-width: 450px;
             height: auto;
             margin-bottom: 20px;
+            max-height: 70vh;
+            object-fit: contain;
+        }
+        @media (max-width: 768px) {
+            #modalImage {
+                max-width: 300px;
+            }
+            #modalContent {
+                padding: 15px;
+            }
         }
         #closeModal {
             padding: 10px 20px;
@@ -96,8 +137,8 @@
 </head>
 <body>
     <div class="header">
-        <img src="logo.jpg" alt="College Logo">
-        <img src="vintage.png" alt="Icon Contest Logo">
+        <img src="images/logo.jpg" alt="College Logo">
+        <img src="images/vintage.png" alt="Icon Contest Logo">
     </div>
     <canvas id="wheel" width="400" height="400"></canvas>
     <button onclick="spinWheel()">Spin the Wheel!</button>
@@ -114,9 +155,9 @@
         const canvas = document.getElementById('wheel');
         const ctx = canvas.getContext('2d');
         const tasks = [
-            { name: 'Task 1', url: 'tsk1.jpg' },
-            { name: 'Task 2', url: 'task2.jpg' },
-            { name: 'Task 3', url: 'tsk3.jpg' }
+            { name: 'Task 1', url: 'images/tsk1.jpg' },
+            { name: 'Task 2', url: 'images/task2.jpg' },
+            { name: 'Task 3', url: 'images/tsk3.jpg' }
         ];
         const colors = ['#FF6F61', '#88B04B', '#F7CAC9'];
         const segments = tasks.length;
