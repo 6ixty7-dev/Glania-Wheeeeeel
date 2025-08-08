@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Icon Spinning Wheel</title>
+    <title>Round Y</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         body {
@@ -19,14 +19,14 @@
         .header {
             text-align: center;
             margin: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 600px;
         }
         .header img {
             max-width: 100px;
             height: auto;
-        }
-        .header h1 {
-            font-size: 36px;
-            margin: 10px 0;
         }
         canvas {
             border: 2px solid #FFFFFF;
@@ -76,7 +76,7 @@
             transform: scale(1);
         }
         #modalImage {
-            max-width: 300px;
+            max-width: 450px;
             height: auto;
             margin-bottom: 20px;
         }
@@ -96,8 +96,8 @@
 </head>
 <body>
     <div class="header">
-        <img src="vintage.png" alt="College Logo">
-        <h1>Icon Spinner</h1>
+        <img src="images/logo.jpg" alt="College Logo">
+        <img src="images/Black_And_White_Vintage_Music_Festival_Poster-removebg-preview.png" alt="Icon Contest Logo">
     </div>
     <canvas id="wheel" width="400" height="400"></canvas>
     <button onclick="spinWheel()">Spin the Wheel!</button>
@@ -114,9 +114,9 @@
         const canvas = document.getElementById('wheel');
         const ctx = canvas.getContext('2d');
         const tasks = [
-            { name: 'Task 1', url: 'tsk1.jpg' },
-            { name: 'Task 2', url: 'task2.jpg' },
-            { name: 'Task 3', url: 'tsk3.jpg' }
+            { name: 'Task 1', url: 'images/tsk1.jpg' },
+            { name: 'Task 2', url: 'images/task2.jpg' },
+            { name: 'Task 3', url: 'images/tsk3.jpg' }
         ];
         const colors = ['#FF6F61', '#88B04B', '#F7CAC9'];
         const segments = tasks.length;
@@ -168,7 +168,7 @@
             document.getElementById('result').textContent = '';
             document.getElementById('modal').style.display = 'none';
             audio.play().catch(e => console.log('Audio play failed:', e));
-            const spinTime = 4000;
+            const spinTime = 2500;
             const spinAngle = Math.random() * 360 + 720;
             let startTime = null;
 
