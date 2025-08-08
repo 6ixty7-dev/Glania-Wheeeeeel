@@ -245,12 +245,19 @@
             modal.style.display = 'flex';
             modalContent.classList.add('show');
 
-            // Confetti effect
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
+            // Ensure confetti is defined and trigger with delay
+            if (typeof confetti === 'function') {
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 100,
+                        spread: 70,
+                        origin: { y: 0.6 },
+                        zIndex: 2000 // Ensure foreground
+                    });
+                }, 100); // Delay to ensure modal is rendered
+            } else {
+                console.log('Confetti library not loaded');
+            }
         }
 
         function closeModal() {
